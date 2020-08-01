@@ -5,9 +5,7 @@
         <section id="hero">
           <v-row no-gutters>
             <v-img
-              :height="
-                'calc(100vh - ' + $vuetify.application.footer + 'px)'
-              "
+              :height="'calc(100vh - ' + $vuetify.application.footer + 'px)'"
               src="universe.jpg"
             >
               <v-theme-provider dark>

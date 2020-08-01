@@ -27,7 +27,7 @@ export default {
           'Get a quick estimation of the price of your data by uploading them',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
   },
   /*
    ** Global CSS
