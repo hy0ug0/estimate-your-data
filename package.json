@@ -26,11 +26,11 @@
     "@nuxt/typescript-runtime": "1.0.0",
     "@nuxtjs/axios": "5.12.1",
     "@nuxtjs/pwa": "3.0.0-beta.20",
-    "nuxt": "2.14.0",
+    "nuxt": "2.14.1",
     "nuxt-composition-api": "0.11.0"
   },
   "devDependencies": {
-    "@nuxt/types": "2.14.0",
+    "@nuxt/types": "2.14.1",
     "@nuxt/typescript-build": "2.0.2",
     "@nuxtjs/eslint-config": "3.1.0",
     "@nuxtjs/eslint-config-typescript": "3.0.0",
