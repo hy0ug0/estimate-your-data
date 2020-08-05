@@ -100,6 +100,14 @@
 <script lang="ts">
 import { defineComponent, reactive } from '@vue/composition-api';
 
+interface EstimatedFile {
+  name: string;
+  lastModified: number;
+  size: number;
+  type: string;
+  estimation?: number;
+}
+
 export default defineComponent({
   setup() {
     const state = reactive({
@@ -135,9 +143,12 @@ export default defineComponent({
 
     async function estimateData(): Promise<void> {
       state.isEstimating = true;
+      const importedFiles = saveFilesInfos(state.files);
       await setTimeout(function () {
-        state.estimation =
-          Math.floor(Math.random() * 500) + 50 * state.files.length;
+        state.estimation = importedFiles.reduce(
+          (prev, curr) => calculateFilePrice(curr) + prev,
+          0
+        );
         state.files = [];
         state.isHovering = false;
         state.isEstimating = false;
@@ -151,6 +162,46 @@ export default defineComponent({
 
     function handleEndHovering() {
       state.isHovering = false;
+    }
+
+    function saveFilesInfos(files: File[]): EstimatedFile[] {
+      return files.map((file) => {
+        const normalizedFileName = normalizeFileName(file.name);
+        if (!localStorage.getItem(normalizedFileName)) {
+          const newFile = {
+            name: file.name,
+            lastModified: file.lastModified,
+            size: file.size,
+            type: file.type,
+          };
+          localStorage.setItem(normalizedFileName, JSON.stringify(newFile));
+          return newFile;
+        } else {
+          return JSON.parse(localStorage.getItem(normalizedFileName) || '{}');
+        }
+      });
+    }
+
+    function updateFilePrice(file: EstimatedFile, price: number): void {
+      const normalizedFileName = normalizeFileName(file.name);
+      localStorage.setItem(
+        normalizedFileName,
+        JSON.stringify({ ...file, estimation: price })
+      );
+    }
+
+    function calculateFilePrice(file: EstimatedFile): number {
+      if (file.estimation) {
+        return file.estimation;
+      } else {
+        const estimatedPrice = Math.floor(Math.random() * 500);
+        updateFilePrice(file, estimatedPrice);
+        return estimatedPrice;
+      }
+    }
+
+    function normalizeFileName(rawFileName: string): string {
+      return rawFileName.trim().toLowerCase().replace(/\s/g, '');
     }
 
     return {
