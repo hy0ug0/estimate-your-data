@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@nuxt/content": "1.5.3",
+    "@nuxt/content": "1.6.0",
     "@nuxt/typescript-runtime": "1.0.0",
     "@nuxtjs/axios": "5.12.1",
     "@nuxtjs/pwa": "3.0.0-beta.20",
