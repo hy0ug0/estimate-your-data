@@ -54,6 +54,7 @@
                         <v-icon left>mdi-rocket</v-icon> ESTIMATE</v-btn
                       >
                       <v-spacer class="mb-5" />
+                      <LogAlgorithm :show="true" />
                       <v-expand-transition>
                         <v-card v-show="state.showEstimation">
                           <v-card-text>
@@ -99,6 +100,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from '@vue/composition-api';
+import LogAlgorithm from '../components/LogAlgorithm.vue';
 
 interface EstimatedFile {
   name: string;
@@ -109,6 +111,9 @@ interface EstimatedFile {
 }
 
 export default defineComponent({
+  components: {
+    LogAlgorithm,
+  },
   setup() {
     const state = reactive({
       files: [] as File[],

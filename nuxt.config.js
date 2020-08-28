@@ -27,7 +27,14 @@ export default {
           'Get a quick estimation of the price of your data by uploading them',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Inconsolata&display=swapo',
+      },
+    ],
   },
   /*
    ** Global CSS
@@ -62,6 +69,9 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    font: {
+      family: 'Inconsolata',
+    },
     theme: {
       dark: true,
       themes: {
