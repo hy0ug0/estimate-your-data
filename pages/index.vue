@@ -54,7 +54,10 @@
                         <v-icon left>mdi-rocket</v-icon> ESTIMATE</v-btn
                       >
                       <v-spacer class="mb-5" />
-                      <LogAlgorithm :show="true" />
+                      <LogAlgorithm
+                        :show="state.showLogAlgorithm"
+                        @on-change-show-estimation="onChangeShowEstimation"
+                      />
                       <v-expand-transition>
                         <v-card v-show="state.showEstimation">
                           <v-card-text>
@@ -72,9 +75,7 @@
                           </v-card-text>
                           <v-card-actions>
                             <v-spacer />
-                            <v-btn text @click="resetFields">
-                              Close
-                            </v-btn>
+                            <v-btn text @click="resetFields"> Close </v-btn>
                           </v-card-actions>
                         </v-card>
                       </v-expand-transition>
@@ -120,6 +121,7 @@ export default defineComponent({
       isHovering: false as boolean,
       isEstimating: false as boolean,
       showEstimation: false as boolean,
+      showLogAlgorithm: false as boolean,
       estimation: 0 as number,
     });
 
@@ -146,19 +148,22 @@ export default defineComponent({
       );
     }
 
-    async function estimateData(): Promise<void> {
+    function onChangeShowEstimation(value: boolean): void {
+      state.showEstimation = value;
+      state.isEstimating = false;
+      state.showLogAlgorithm = false;
+    }
+
+    function estimateData(): void {
       state.isEstimating = true;
       const importedFiles = saveFilesInfos(state.files);
-      await setTimeout(function () {
-        state.estimation = importedFiles.reduce(
-          (prev, curr) => calculateFilePrice(curr) + prev,
-          0
-        );
-        state.files = [];
-        state.isHovering = false;
-        state.isEstimating = false;
-        state.showEstimation = true;
-      }, Math.floor(Math.random() * 5000) + 3000);
+      state.estimation = importedFiles.reduce(
+        (prev, curr) => calculateFilePrice(curr) + prev,
+        0
+      );
+      state.files = [];
+      state.isHovering = false;
+      state.showLogAlgorithm = true;
     }
 
     function handleStartHovering() {
@@ -217,6 +222,7 @@ export default defineComponent({
       handleEndHovering,
       resetFields,
       resetPreviousEstimation,
+      onChangeShowEstimation,
     };
   },
 });

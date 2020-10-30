@@ -10,9 +10,9 @@
             <div
               v-for="log in logsFinish"
               :key="log.id"
-              style="text-align: left; padding: 5px 0;"
+              style="text-align: left; padding: 5px 0"
             >
-              <div v-show="log.show" style="background-color: #b4b4b4;">
+              <div v-show="log.show" style="background-color: #b4b4b4">
                 {{ log.message }}
               </div>
             </div>
@@ -30,10 +30,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    onChangeShowEstimation: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
-      showItem: false,
       logsFinish: [],
       logs: [
         {
@@ -86,10 +89,16 @@ export default {
       ],
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.waitRandom();
-    }, 1500);
+  watch: {
+    show: {
+      handler(val) {
+        if (val) {
+          setTimeout(() => {
+            this.waitRandom().then(() => this.onChange());
+          }, 1500);
+        }
+      },
+    },
   },
   methods: {
     async waitRandom() {
@@ -100,7 +109,7 @@ export default {
               log.show = true;
               resolve('toto');
             },
-            log.id % 2 === 0 ? Math.random() * 3 * 1000 : 0
+            log.id % 2 === 1 ? Math.random() * 3 * 1000 : 0
           );
         });
         if (this.logsFinish.length === 2) {
@@ -108,6 +117,11 @@ export default {
         }
         this.logsFinish.push(log);
       }
+    },
+    onChange() {
+      this.$set.logs = this.logs.map((log) => ({ ...log, show: false }));
+      this.logsFinish = [];
+      this.$emit('on-change-show-estimation', true);
     },
   },
 };
