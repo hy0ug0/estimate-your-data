@@ -12,7 +12,7 @@
               :key="log.id"
               style="text-align: left; padding: 5px 0"
             >
-              <div v-show="log.show" style="background-color: #b4b4b4">
+              <div v-show="log.show">
                 {{ log.message }}
               </div>
             </div>
