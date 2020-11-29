@@ -1647,10 +1647,10 @@
     consola "^2.15.0"
     eslint-webpack-plugin "^2.3.0"
 
-"@nuxtjs/pwa@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.3.0.tgz#90dc0b8c5ae098948a4acd3ca2c30d6e6e622c08"
-  integrity sha512-PrVGXMmohgqXmJcs2QlgLQE5iirh9W9deMvqiyiWLewC4K5A29Mx8KJOsUAYw+DR0t9uEbaEfSS9NN4tfac5IQ==
+"@nuxtjs/pwa@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.3.1.tgz#1056d9b2c52201094ff0683e2ee652a15cc701ab"
+  integrity sha512-XQGRooqZl9kEQLNC+FtsJyG5ZbeeTGrtme4Yr12XpJPvPfrwN2a4BkCS+ucNGbkDV9yxRtGtj04rIXLqsuMAkQ==
   dependencies:
     defu "^3.2.2"
     execa "^4.1.0"
