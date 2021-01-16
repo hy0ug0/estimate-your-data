@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "2.0.0",
+    "@nuxt/typescript-runtime": "2.0.1",
     "@nuxtjs/pwa": "3.3.4",
     "nuxt": "2.14.12",
     "nuxt-composition-api": "0.11.0"
