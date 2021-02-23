@@ -24,11 +24,11 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "2.0.1",
     "@nuxtjs/pwa": "3.3.5",
-    "nuxt": "2.15.1",
+    "nuxt": "2.15.2",
     "nuxt-composition-api": "0.11.0"
   },
   "devDependencies": {
-    "@nuxt/types": "2.15.1",
+    "@nuxt/types": "2.15.2",
     "@nuxt/typescript-build": "2.0.5",
     "@nuxtjs/eslint-config": "5.0.0",
     "@nuxtjs/eslint-config-typescript": "5.0.0",
